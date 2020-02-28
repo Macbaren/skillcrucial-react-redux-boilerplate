@@ -9,6 +9,10 @@ import faker from 'faker';
 import cookieParser from 'cookie-parser'
 import Html from '../client/html';
 import Variables from '../client/variables';
+import mongooseConnection from './services/mongoose'
+import interactionRoutes from './routes/interactions'
+
+mongooseConnection()
 
 const PAGE_SIZE = 10
 
@@ -74,6 +78,9 @@ const imgdata = [
   0x01, 0x00, 0x01, 0x00, 0x00, 0x02, 0x02, 0x44, 0x01, 0x00, 0x3b
 ]
 const imgbuf = Buffer.from(imgdata)
+
+server.use('/interactions', interactionRoutes)
+
 server.get('/tracker/:userId.gif', (req, res) => {
   const { userId } = req.params
   // <img src={`/tracker.${counter}.gif`} alt="tracker" />
