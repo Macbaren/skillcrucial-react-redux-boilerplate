@@ -11,8 +11,11 @@ import Html from '../client/html';
 import Variables from '../client/variables';
 import mongooseConnection from './services/mongoose'
 import interactionRoutes from './routes/interactions'
+// import homeworkRoutes from './routes/homework.routes'
 
 mongooseConnection()
+
+// homeworkRoutes()
 
 const PAGE_SIZE = 10
 
@@ -80,6 +83,8 @@ const imgdata = [
 const imgbuf = Buffer.from(imgdata)
 
 server.use('/interactions', interactionRoutes)
+
+// server.use('/homework', homeworkRoutes)
 
 server.get('/tracker/:userId.gif', (req, res) => {
   const { userId } = req.params
